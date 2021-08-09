@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_shoes_overviews",
+  "info": {
+    "name": "ShoesOverview",
+    "icon": "hand-peace",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "shoes": {
+      "collection": "shoes"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

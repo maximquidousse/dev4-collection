@@ -14,6 +14,9 @@ import { useSession, signIn, signOut } from 'next-auth/client'
 const DynamicPage = ({ sections, metadata, preview, global, pageContext }) => {
   const router = useRouter()
   const [session, loading] = useSession();
+ if(session){
+   console.log(session)
+ }
 
   const handleSignin = (e) => {
     e.preventDefault()

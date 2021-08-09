@@ -1,10 +1,10 @@
 import { useRouter } from "next/router"
-import Hero from "@/components/sections/hero"
 
+import ShoesOverview from "@/components/sections/shoes-overview"
 
 // Map Strapi sections to section components
 const sectionComponents = {
-  "sections.hero": Hero,
+  "sections.shoes-overview": ShoesOverview,
 }
 
 // Display a section individually

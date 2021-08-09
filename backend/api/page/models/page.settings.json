@@ -46,7 +46,8 @@
         "sections.large-video",
         "sections.rich-text",
         "sections.pricing",
-        "sections.lead-form"
+        "sections.lead-form",
+        "sections.shoes-overview"
       ],
       "pluginOptions": {
         "i18n": {
