@@ -17,6 +17,7 @@
     "formik": "^2.2.6",
     "js-cookie": "3.0.0-rc.4",
     "next": "^11.0.0",
+    "next-auth": "^3.27.3",
     "next-seo": "^4.7.1",
     "postcss-import": "^14.0.2",
     "prop-types": "^15.7.2",
