@@ -21,9 +21,6 @@ const DynamicPage = ({
 }) => {
   const router = useRouter()
   const [session, loading] = useSession()
-  if (session) {
-    console.log(session)
-  }
 
   const handleSignin = (e) => {
     e.preventDefault()

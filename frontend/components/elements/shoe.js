@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 const Shoe = ({ props }) => {
   const router = useRouter()
   const [edit, setEdit] = useState(false)
-  console.log(edit)
+
   const [values, setValues] = useState({
     name: props.name,
     owner: props.owner,
@@ -15,6 +15,23 @@ const Shoe = ({ props }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
+  }
+
+  const deleteShoe = async (e) => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/shoes/${props.id}`,
+      {
+        method: "DELETE",
+      }
+    )
+
+    if (!response.ok) {
+      console.log("delete did not work")
+    } else {
+      await response.json()
+      setEdit(false)
+      router.push(`/`)
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -33,7 +50,6 @@ const Shoe = ({ props }) => {
     if (!response.ok) {
       console.log("update did not work")
     } else {
-      console.log("update worked")
       await response.json()
       setEdit(false)
       router.push(`/`)
@@ -41,7 +57,7 @@ const Shoe = ({ props }) => {
   }
 
   return (
-    <div>
+    <div className="mt-8">
       {/* <img
         width={400}
         height={200}
@@ -74,6 +90,7 @@ const Shoe = ({ props }) => {
         </>
       )}
       <h1>Owner: {props.owner}</h1>
+      <button onClick={deleteShoe}>Delete shoe</button>
     </div>
   )
 }

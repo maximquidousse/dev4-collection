@@ -1,7 +1,6 @@
 import Shoe from "@/components/elements/shoe"
 
 const ShoesOverview = ({ data, shoes }) => {
-  console.log(shoes)
   return (
     <>
       <section className="mt-8">

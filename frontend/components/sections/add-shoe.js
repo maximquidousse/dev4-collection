@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 
 const AddShoe = ({ data, user }) => {
   const router = useRouter()
+  const [image, setImage] = useState(null)
   const [values, setValues] = useState({
     name: "",
     owner: user.name,
@@ -31,10 +32,28 @@ const AddShoe = ({ data, user }) => {
     if (!response.ok) {
       console.log("post did not work")
     } else {
-      console.log("post worked")
-      const post = await response.json()
-      console.log(post)
+      const data = await response.json()
+
+      const formData = new FormData()
+      formData.append("files", image)
+      formData.append("ref", "shoes")
+      formData.append("refId", data.id)
+      formData.append("field", "image")
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
+
       router.push(`/`)
+      setValues({
+        name: "",
+        owner: user.name,
+      })
+      setImage(null)
     }
   }
   return (
@@ -52,6 +71,7 @@ const AddShoe = ({ data, user }) => {
               value={name}
               onChange={handleInputChange}
             />
+            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
             <input
               className="border border-black border-1"
               type="submit"
