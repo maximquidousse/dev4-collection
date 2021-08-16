@@ -5,23 +5,30 @@ import Seo from "@/components/elements/seo"
 import { useRouter } from "next/router"
 import Layout from "@/components/layout"
 import { getLocalizedPaths } from "utils/localize"
-import { useSession, signIn, signOut } from 'next-auth/client'
+import { useSession, signIn, signOut } from "next-auth/client"
 
 // The file is called [[...slug]].js because we're using Next's
 // optional catch all routes feature. See the related docs:
 // https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes
 
-const DynamicPage = ({ sections, metadata, preview, global, pageContext }) => {
+const DynamicPage = ({
+  sections,
+  metadata,
+  preview,
+  global,
+  pageContext,
+  shoes,
+}) => {
   const router = useRouter()
-  const [session, loading] = useSession();
- if(session){
-   console.log(session)
- }
+  const [session, loading] = useSession()
+  if (session) {
+    console.log(session)
+  }
 
   const handleSignin = (e) => {
     e.preventDefault()
     signIn()
-  }   
+  }
   const handleSignout = (e) => {
     e.preventDefault()
     signOut()
@@ -37,25 +44,33 @@ const DynamicPage = ({ sections, metadata, preview, global, pageContext }) => {
     return <div className="container">Loading...</div>
   }
 
-  return (  
+  return (
     <Layout global={global} pageContext={pageContext}>
       {/* Add meta tags for SEO*/}
       <Seo metadata={metadata} />
       {/* Display content sections */}
       <div>
         {loading && <div>Loading...</div>}
-          {session 
-						&& <> 
-							<p> Welcome, {session.user.name ?? session.user.email}</p>
-         			<a href="#" onClick={handleSignout} className="btn-signin">Sign out</a> 
-          		<Sections sections={sections} preview={preview} />
-          	</>
-					}
-           {!session 
-					 && 
-					 <a href="#" onClick={handleSignin} className="btn-signin">Sign in</a>  
-					 } 
-        </div>
+        {session && (
+          <>
+            <p> Welcome, {session.user.name ?? session.user.email}</p>
+            <a href="#" onClick={handleSignout} className="btn-signin">
+              Sign out
+            </a>
+            <Sections
+              sections={sections}
+              preview={preview}
+              shoes={shoes}
+              user={session.user}
+            />
+          </>
+        )}
+        {!session && (
+          <a href="#" onClick={handleSignin} className="btn-signin">
+            Sign in
+          </a>
+        )}
+      </div>
     </Layout>
   )
 }
@@ -83,6 +98,9 @@ export async function getStaticPaths(context) {
 }
 
 export async function getStaticProps(context) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/shoes`)
+  const shoes = await res.json()
+
   const { params, locale, locales, defaultLocale, preview = null } = context
 
   const globalLocale = await getGlobalData(locale)
@@ -113,6 +131,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
+      shoes: shoes,
       preview,
       sections: contentSections,
       metadata,

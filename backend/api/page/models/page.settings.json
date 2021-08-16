@@ -47,7 +47,8 @@
         "sections.rich-text",
         "sections.pricing",
         "sections.lead-form",
-        "sections.shoes-overview"
+        "sections.shoes-overview",
+        "sections.add-shoe"
       ],
       "pluginOptions": {
         "i18n": {

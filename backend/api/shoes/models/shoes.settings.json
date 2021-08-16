@@ -26,6 +26,9 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "owner": {
+      "type": "string"
     }
   }
 }

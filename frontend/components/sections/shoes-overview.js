@@ -1,13 +1,15 @@
 import Shoe from "@/components/elements/shoe"
 
-const ShoesOverview = ({ data }) => {
-  const shoes = data.shoes
-
+const ShoesOverview = ({ data, shoes }) => {
+  console.log(shoes)
   return (
     <>
-      {shoes.map((shoe) => (
-        <Shoe props={shoe} />
-      ))}
+      <section className="mt-8">
+        <p>{data.title}</p>
+        {shoes.map((shoe) => (
+          <Shoe props={shoe} key={shoe.id} />
+        ))}
+      </section>
     </>
   )
 }

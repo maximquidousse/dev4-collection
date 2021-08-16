@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_sections_shoes_overviews",
+  "collectionName": "components_sections_add_shoes",
   "info": {
-    "name": "ShoesOverview",
-    "icon": "hand-peace",
+    "name": "AddShoe",
+    "icon": "edit",
     "description": ""
   },
   "options": {},
