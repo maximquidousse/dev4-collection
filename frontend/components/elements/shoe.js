@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import { useRouter } from "next/router"
+import Comment from "@/components/elements/comment"
 
-const Shoe = ({ props }) => {
+const Shoe = ({ props, user }) => {
   const router = useRouter()
   const [edit, setEdit] = useState(false)
+  const [text, setText] = useState("")
 
   const [values, setValues] = useState({
     name: props.name,
@@ -11,6 +13,35 @@ const Shoe = ({ props }) => {
   })
 
   const { name, owner } = values
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault()
+    if (text == "") {
+    } else {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/comments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            text: text,
+            user: user.name,
+            shoe: props.id,
+            shoeID: props.id,
+          }),
+        }
+      )
+      if (!response.ok) {
+        console.log("post did not work")
+      } else {
+        const data = await response.json()
+        setText("")
+        router.push(`/`)
+      }
+    }
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -57,9 +88,9 @@ const Shoe = ({ props }) => {
   }
 
   return (
-    <div className="mt-16 flex flex-col items-center border-b border-black">
+    <div className="mt-16 flex flex-col items-center">
       <img
-        className="object-contain w-full "
+        className="object-contain w-full"
         src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${props.image.url}`}
       />
       {edit && (
@@ -93,7 +124,7 @@ const Shoe = ({ props }) => {
       )}
       {!edit && (
         <>
-          <div className="flex justify-between w-full mt-4">
+          <div className="flex justify-between w-full mt-4 ">
             <h1 className="font-montreal font-bold text-5xl uppercase">
               {props.name}
             </h1>
@@ -106,7 +137,7 @@ const Shoe = ({ props }) => {
           </div>
         </>
       )}
-      <div className="flex justify-between w-full mt-4">
+      <div className="flex justify-between w-full mt-4  border-b border-black">
         <h1 className="font-montreal font-bold text-2xl uppercase">
           {props.owner}
         </h1>
@@ -116,6 +147,35 @@ const Shoe = ({ props }) => {
         >
           Delete shoe
         </p>
+      </div>
+      <div className="flex flex-col w-full mt-4">
+        {props.comments.length > 0 && (
+          <p className="font-montreal font-bold text-2xl">Comments:</p>
+        )}
+        {props.comments.length < 1 && (
+          <p className="font-montreal font-bold text-2xl">No comments yet.</p>
+        )}
+        {props.comments.map((comment) => (
+          <Comment props={comment} key={comment.id} />
+        ))}
+        <div className="flex justify-between border-t border-b border-black mt-4">
+          <input
+            name="text"
+            type="text"
+            placeholder="Add a comment"
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value)
+            }}
+            className="font-montreal font-medium text-md bg-grey w-3/4"
+          />
+          <p
+            onClick={handleCommentSubmit}
+            className="font-montreal font-medium text-md uppercase bg-black text-white cursor-pointer p-2"
+          >
+            Submit comment
+          </p>
+        </div>
       </div>
     </div>
   )

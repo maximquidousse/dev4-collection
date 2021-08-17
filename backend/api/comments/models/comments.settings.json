@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comments",
+  "info": {
+    "name": "Comments",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "user": {
+      "type": "string"
+    },
+    "shoeID": {
+      "via": "comments",
+      "model": "shoes"
+    }
+  }
+}

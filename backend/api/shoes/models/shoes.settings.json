@@ -29,6 +29,10 @@
     },
     "owner": {
       "type": "string"
+    },
+    "comments": {
+      "via": "shoeID",
+      "collection": "comments"
     }
   }
 }

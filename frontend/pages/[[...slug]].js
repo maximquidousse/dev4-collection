@@ -6,7 +6,6 @@ import { useRouter } from "next/router"
 import Layout from "@/components/layout"
 import { getLocalizedPaths } from "utils/localize"
 import { useSession, signIn, signOut } from "next-auth/client"
-import Navbar from "@/components/elements/Navbar"
 
 // The file is called [[...slug]].js because we're using Next's
 // optional catch all routes feature. See the related docs:

@@ -18,42 +18,45 @@ const AddShoe = ({ data, user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/shoes`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      }
-    )
-
-    if (!response.ok) {
-      console.log("post did not work")
+    if (values.name == "" || values.owner == "" || image == null) {
     } else {
-      const data = await response.json()
-
-      const formData = new FormData()
-      formData.append("files", image)
-      formData.append("ref", "shoes")
-      formData.append("refId", data.id)
-      formData.append("field", "image")
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/upload`,
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/shoes`,
         {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
         }
       )
 
-      router.push(`/`)
-      setValues({
-        name: "",
-        owner: user.name,
-      })
-      setImage(null)
+      if (!response.ok) {
+        console.log("post did not work")
+      } else {
+        const data = await response.json()
+
+        const formData = new FormData()
+        formData.append("files", image)
+        formData.append("ref", "shoes")
+        formData.append("refId", data.id)
+        formData.append("field", "image")
+
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/upload`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        )
+
+        router.push(`/`)
+        setValues({
+          name: "",
+          owner: user.name,
+        })
+        setImage(null)
+      }
     }
   }
   return (
@@ -79,7 +82,7 @@ const AddShoe = ({ data, user }) => {
               onChange={(e) => setImage(e.target.files[0])}
             />
             <input
-              className="border border-black border-1 bg-grey font-montreal font-medium text-md uppercase p-3 bg-black text-white mt-4"
+              className="border border-black border-1 bg-grey font-montreal font-medium text-md uppercase p-3 bg-black text-white mt-4 cursor-pointer"
               type="submit"
               value="Submit shoe"
             />
