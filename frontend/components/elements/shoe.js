@@ -57,40 +57,66 @@ const Shoe = ({ props }) => {
   }
 
   return (
-    <div className="mt-8">
-      {/* <img
-        width={400}
-        height={200}
-        src={`http://localhost:1337${props.image.url}`}
-      /> */}
+    <div className="mt-16 flex flex-col items-center border-b border-black">
+      <img
+        className="object-contain w-full "
+        src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${props.image.url}`}
+      />
       {edit && (
         <>
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            className=" flex justify-between w-full mt-4"
+          >
             <input
-              className="border border-black border-1"
+              className="border border-black border-1 font-montreal font-bold text-5xl uppercase bg-grey"
               name="name"
               type="text"
               id="name"
+              placeholder={props.name}
               value={name}
               onChange={handleInputChange}
             />
             <input
-              className="border border-black border-1"
+              className="font-montreal font-medium uppercase text-xl bg-grey"
               type="submit"
               value="Submit change"
             />
           </form>
-          <p onClick={() => setEdit(false)}> cancel</p>
+          <p
+            className="font-montreal font-medium uppercase text-xl bg-grey cursor-pointer"
+            onClick={() => setEdit(false)}
+          >
+            cancel
+          </p>
         </>
       )}
       {!edit && (
         <>
-          <h1>Shoe: {props.name}</h1>
-          <p onClick={() => setEdit(true)}> change name</p>
+          <div className="flex justify-between w-full mt-4">
+            <h1 className="font-montreal font-bold text-5xl uppercase">
+              {props.name}
+            </h1>
+            <p
+              className="font-montreal font-medium uppercase text-xl cursor-pointer"
+              onClick={() => setEdit(true)}
+            >
+              change name
+            </p>
+          </div>
         </>
       )}
-      <h1>Owner: {props.owner}</h1>
-      <button onClick={deleteShoe}>Delete shoe</button>
+      <div className="flex justify-between w-full mt-4">
+        <h1 className="font-montreal font-bold text-2xl uppercase">
+          {props.owner}
+        </h1>
+        <p
+          className="font-montreal font-medium uppercase text-xl text-red pb-4 transform -translate-y-8 cursor-pointer"
+          onClick={deleteShoe}
+        >
+          Delete shoe
+        </p>
+      </div>
     </div>
   )
 }

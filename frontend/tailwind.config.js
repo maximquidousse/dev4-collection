@@ -6,8 +6,13 @@ module.exports = {
   darkMode: false, // or "media" or "class"
   theme: {
     extend: {
+      fontFamily: {
+        montreal: "Neue Montreal",
+      },
       colors: {
         primary: colors.indigo,
+        grey: "#D1CAC6",
+        red: "#9A0606",
       },
       container: {
         center: true,

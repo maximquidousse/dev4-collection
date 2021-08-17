@@ -2,6 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("../fonts/NeueMontreal-BoldItalic.woff2") format("woff2"),
+      url("../fonts/NeueMontreal-BoldItalic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("../fonts/NeueMontreal-Regular.woff2") format("woff2"),
+      url("../fonts/NeueMontreal-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("../fonts/NeueMontreal-Italic.woff2") format("woff2"),
+      url("../fonts/NeueMontreal-Italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("../fonts/NeueMontreal-Light.woff2") format("woff2"),
+      url("../fonts/NeueMontreal-Light.woff") format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("../fonts/NeueMontreal-LightItalic.woff2") format("woff2"),
+      url("../fonts/NeueMontreal-LightItalic.woff") format("woff");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("../fonts/NeueMontreal-Bold.woff2") format("woff2"),
+      url("../fonts/NeueMontreal-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
 html {
   font-size: 13px;
   @apply text-gray-900;

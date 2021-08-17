@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import Layout from "@/components/layout"
 import { getLocalizedPaths } from "utils/localize"
 import { useSession, signIn, signOut } from "next-auth/client"
+import Navbar from "@/components/elements/Navbar"
 
 // The file is called [[...slug]].js because we're using Next's
 // optional catch all routes feature. See the related docs:
@@ -50,10 +51,23 @@ const DynamicPage = ({
         {loading && <div>Loading...</div>}
         {session && (
           <>
-            <p> Welcome, {session.user.name ?? session.user.email}</p>
-            <a href="#" onClick={handleSignout} className="btn-signin">
-              Sign out
-            </a>
+            <div className="flex justify-between mt-4 border-b border-black">
+              <p className="font-montreal font-bold uppercase text-sm">
+                Sneakers . Collection . 2021
+              </p>
+              <div className="flex">
+                <p className="font-montreal font-bold uppercase text-sm mr-4">
+                  Welcome, {session.user.name ?? session.user.email}
+                </p>
+                <a
+                  className="font-montreal font-bold uppercase text-sm"
+                  href="#"
+                  onClick={handleSignout}
+                >
+                  Sign out
+                </a>
+              </div>
+            </div>
             <Sections
               sections={sections}
               preview={preview}
@@ -63,9 +77,26 @@ const DynamicPage = ({
           </>
         )}
         {!session && (
-          <a href="#" onClick={handleSignin} className="btn-signin">
-            Sign in
-          </a>
+          <>
+            <div className="flex justify-between mt-4 border-b border-black">
+              <p className="font-montreal font-bold uppercase text-sm">
+                Sneakers . Collection . 2021
+              </p>
+              <a
+                className="font-montreal font-bold uppercase text-sm"
+                href="#"
+                onClick={handleSignin}
+              >
+                Sign in
+              </a>
+            </div>
+            <p
+              className="font-montreal font-bold uppercase text-center cursor-pointer mt-32"
+              onClick={handleSignin}
+            >
+              Sign in to see the collection
+            </p>
+          </>
         )}
       </div>
     </Layout>

@@ -58,22 +58,28 @@ const AddShoe = ({ data, user }) => {
   }
   return (
     <>
-      <section className="mt-8">
-        <p>{data.title}</p>
+      <section className="mt-8 mb-64 w-full flex flex-col items-center border border-black py-16">
+        <p className="font-montreal font-bold text-4xl uppercase">
+          {data.title}
+        </p>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name">Name shoe:</label>
+          <div className="flex flex-col mt-6">
             <input
-              className="border border-black border-1"
+              className="border border-black border-1 bg-grey font-montreal font-medium text-md p-3"
               name="name"
               type="text"
               id="name"
               value={name}
+              placeholder="Name shoe"
               onChange={handleInputChange}
             />
-            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
             <input
-              className="border border-black border-1"
+              className="block border border-black border-1 bg-grey font-montreal font-medium text-md p-3 mt-4"
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            <input
+              className="border border-black border-1 bg-grey font-montreal font-medium text-md uppercase p-3 bg-black text-white mt-4"
               type="submit"
               value="Submit shoe"
             />
