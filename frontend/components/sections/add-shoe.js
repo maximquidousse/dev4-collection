@@ -79,6 +79,7 @@ const AddShoe = ({ data, user }) => {
             <input
               className="block border border-black border-1 bg-grey font-montreal font-medium text-md p-3 mt-4"
               type="file"
+              accept="image/*"
               onChange={(e) => setImage(e.target.files[0])}
             />
             <input
