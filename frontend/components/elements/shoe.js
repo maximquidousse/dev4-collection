@@ -89,10 +89,7 @@ const Shoe = ({ props, user }) => {
 
   return (
     <div className="mt-16 flex flex-col items-center">
-      <img
-        className="object-contain w-full"
-        src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${props.image.url}`}
-      />
+      <img className="object-contain w-full" src={props.image.url} />
       {edit && (
         <>
           <form
