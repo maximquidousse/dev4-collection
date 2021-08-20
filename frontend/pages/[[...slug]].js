@@ -102,27 +102,27 @@ const DynamicPage = ({
   )
 }
 
-export async function getStaticPaths(context) {
-  // Get all pages from Strapi
-  const allPages = context.locales.map(async (locale) => {
-    const localePages = await fetchAPI(`/pages?_locale=${locale}`)
-    return localePages
-  })
+// export async function getStaticPaths(context) {
+//   // Get all pages from Strapi
+//   const allPages = context.locales.map(async (locale) => {
+//     const localePages = await fetchAPI(`/pages?_locale=${locale}`)
+//     return localePages
+//   })
 
-  const pages = await (await Promise.all(allPages)).flat()
+//   const pages = await (await Promise.all(allPages)).flat()
 
-  const paths = pages.map((page) => {
-    // Decompose the slug that was saved in Strapi
-    const slugArray = !page.slug ? false : page.slug.split("/")
+//   const paths = pages.map((page) => {
+//     // Decompose the slug that was saved in Strapi
+//     const slugArray = !page.slug ? false : page.slug.split("/")
 
-    return {
-      params: { slug: slugArray },
-      // Specify the locale to render
-      locale: page.locale,
-    }
-  })
-  return { paths, fallback: true }
-}
+//     return {
+//       params: { slug: slugArray },
+//       // Specify the locale to render
+//       locale: page.locale,
+//     }
+//   })
+//   return { paths, fallback: true }
+// }
 
 export async function getServerSideProps(context) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/shoes`)
