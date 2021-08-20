@@ -102,7 +102,7 @@ const DynamicPage = ({
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths(context) {
   // Get all pages from Strapi
   const allPages = context.locales.map(async (locale) => {
     const localePages = await fetchAPI(`/pages?_locale=${locale}`)
@@ -124,7 +124,7 @@ export async function getServerSideProps(context) {
   return { paths, fallback: true }
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/shoes`)
   const shoes = await res.json()
 
