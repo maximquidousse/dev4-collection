@@ -1,7 +1,6 @@
 import NextAuth from "next-auth"
 import Providers from "next-auth/providers"
-const yo = process.env.GOOGLE_CLIENT_ID
-console.log(yo)
+
 const options = {
   providers: [
     Providers.Google({
