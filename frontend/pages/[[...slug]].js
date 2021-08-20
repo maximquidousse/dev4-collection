@@ -32,12 +32,12 @@ const DynamicPage = ({
   }
 
   // Check if the required data was provided
-  if (!router.isFallback && !sections?.length) {
-    console.log(router)
-    console.log(sections)
-    return <p>yo</p>
-    // return <ErrorPage statusCode={404} />
-  }
+  // if (!router.isFallback && !sections?.length) {
+  //   console.log(router)
+  //   console.log(sections)
+  //   return <p>yo</p>
+  //   // return <ErrorPage statusCode={404} />
+  // }
 
   // Loading screen (only possible in preview mode)
   if (router.isFallback) {
