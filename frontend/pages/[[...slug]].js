@@ -51,34 +51,34 @@ const DynamicPage = ({
       {/* Display content sections */}
       <div>
         {loading && <div>Loading...</div>}
-        {session && (
-          <>
-            <div className="flex justify-between mt-4 border-b border-black">
-              <p className="font-montreal font-bold uppercase text-sm">
-                Sneakers . Collection . 2021
-              </p>
-              <div className="flex">
-                <p className="font-montreal font-bold uppercase text-sm mr-4">
+        {/* {session && ( */}
+        <>
+          <div className="flex justify-between mt-4 border-b border-black">
+            <p className="font-montreal font-bold uppercase text-sm">
+              Sneakers . Collection . 2021
+            </p>
+            <div className="flex">
+              {/* <p className="font-montreal font-bold uppercase text-sm mr-4">
                   Welcome, {session.user.name ?? session.user.email}
-                </p>
-                <a
+                </p> */}
+              {/* <a
                   className="font-montreal font-bold uppercase text-sm"
                   href="#"
                   onClick={handleSignout}
                 >
                   Sign out
-                </a>
-              </div>
+                </a> */}
             </div>
-            <Sections
-              sections={sections}
-              preview={preview}
-              shoes={shoes}
-              user={session.user}
-            />
-          </>
-        )}
-        {!session && (
+          </div>
+          <Sections
+            sections={sections}
+            preview={preview}
+            shoes={shoes}
+            user={session.user}
+          />
+        </>
+        {/* )} */}
+        {/* {!session && (
           <>
             <div className="flex justify-between mt-4 border-b border-black">
               <p className="font-montreal font-bold uppercase text-sm">
@@ -99,7 +99,7 @@ const DynamicPage = ({
               Sign in to see the collection
             </p>
           </>
-        )}
+        )} */}
       </div>
     </Layout>
   )
