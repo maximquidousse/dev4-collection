@@ -22,27 +22,6 @@ const Section = ({ sectionData, shoes, user }) => {
   return <SectionComponent data={sectionData} shoes={shoes} user={user} />
 }
 
-// const PreviewModeBanner = () => {
-//   const router = useRouter()
-//   const exitURL = `/api/exit-preview?redirect=${encodeURIComponent(
-//     router.asPath
-//   )}`
-
-//   return (
-//     <div className="py-4 bg-red-600 text-red-100 font-semibold uppercase tracking-wide">
-//       <div className="container">
-//         Preview mode is on.{" "}
-//         <a
-//           className="underline"
-//           href={`/api/exit-preview?redirect=${router.asPath}`}
-//         >
-//           Turn off
-//         </a>
-//       </div>
-//     </div>
-//   )
-// }
-
 // Display the list of sections
 const Sections = ({ sections, preview, shoes, user }) => {
   return (

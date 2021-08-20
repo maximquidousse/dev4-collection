@@ -31,14 +31,10 @@ const DynamicPage = ({
     signOut()
   }
 
-  // Check if the required data was provided
-  // if (!router.isFallback && !sections?.length) {
-  //   console.log(router)
-  //   console.log(sections)
-  //   return <p>yo</p>
-  //   // return <ErrorPage statusCode={404} />
-  // }]
-  console.log(sections)
+  //Check if the required data was provided
+  if (!router.isFallback && !sections?.length) {
+    return <ErrorPage statusCode={404} />
+  }
 
   // Loading screen (only possible in preview mode)
   if (router.isFallback) {
@@ -149,10 +145,6 @@ export async function getStaticProps(context) {
 
   // We have the required page data, pass it to the page component
   const { contentSections, metadata, localizations, slug } = pageData
-
-  console.log(`pagedata:`, pageData)
-  console.log(`context:`, context)
-  console.log(`sections`, contentSections)
 
   const pageContext = {
     locale: pageData.locale,
